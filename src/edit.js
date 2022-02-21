@@ -22,6 +22,12 @@ import { useBlockProps } from '@wordpress/block-editor';
 import './editor.scss';
 
 /**
+ * TextControl Component
+ * 
+ */
+import { TextControl } from '@wordpress/components';
+
+/**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
@@ -29,10 +35,14 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
+export default function Edit( { attributes, setAttributes } ) {
 	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Wikiblock – hello from the editor!', 'wikiblock' ) }
-		</p>
+		<div { ...useBlockProps() }>
+			<TextControl
+				label={ __( 'Add the Wikiloc track to display on your site', 'wikiblock' ) }
+				value={ attributes.url }
+                onChange={ ( val ) => setAttributes( { url: val } ) }
+			/>
+		</div>
 	);
 }
