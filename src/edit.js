@@ -27,6 +27,8 @@ import './editor.scss';
  */
 import { TextControl } from '@wordpress/components';
 
+import WikilocIframe from './iframe.js';
+
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
@@ -43,6 +45,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				value={ attributes.url }
                 onChange={ ( val ) => setAttributes( { url: val } ) }
 			/>
+			<WikilocIframe url={ attributes.url } />
 		</div>
 	);
 }
