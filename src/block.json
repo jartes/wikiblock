@@ -11,11 +11,8 @@
 		"html": false
 	},
 	"attributes": {
-		"url": {
-			"type": "string",
-			"source": "text",
-			"selector": "div",
-			"default": ""
+		"mapUrl": {
+			"type": "string"			
 		}
 	},
 	"textdomain": "wikiblock",

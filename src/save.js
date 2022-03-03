@@ -23,5 +23,10 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 export default function save( { attributes } ) {
-	return <div { ...useBlockProps.save() }>{ attributes.url }</div>;
+	
+	const mapUrlVar = typeof attributes.mapUrl === 'string' ? attributes.mapUrl.substring( attributes.mapUrl.length - 8) : '';
+	
+    const id = "https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=" + mapUrlVar;
+
+	return <iframe frameBorder="0" scrolling="no" src={id} width="500" height="400" ></iframe>
 }

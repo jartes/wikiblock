@@ -41,11 +41,16 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<div { ...useBlockProps() }>
 			<TextControl
-				label={ __( 'Add the Wikiloc track to display on your site', 'wikiblock' ) }
-				value={ attributes.url }
-                onChange={ ( val ) => setAttributes( { url: val } ) }
+				label={ __( 'Add the Wikiloc track URL to display on your site.', 'wikiblock' ) }
+				value={ attributes.mapUrl.trim() }
+				onChange={ ( val ) => setAttributes( { mapUrl: val } ) }
 			/>
-			<WikilocIframe url={ attributes.url } />
+			<WikilocIframe mapUrl={ attributes.mapUrl } />
 		</div>
 	);
+
+	function myOnChange() {
+		// make the logic
+		// setAttributes
+	}
 }

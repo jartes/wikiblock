@@ -68,14 +68,18 @@ function Edit(_ref) {
     setAttributes
   } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add the Wikiloc track to display on your site', 'wikiblock'),
-    value: attributes.url,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add the Wikiloc track URL to display on your site.', 'wikiblock'),
+    value: attributes.mapUrl.trim(),
     onChange: val => setAttributes({
-      url: val
+      mapUrl: val
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_iframe_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    url: attributes.url
+    mapUrl: attributes.mapUrl
   }));
+
+  function myOnChange() {// make the logic
+    // setAttributes
+  }
 }
 
 /***/ }),
@@ -88,29 +92,25 @@ function Edit(_ref) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ WikilocIframe; }
+/* harmony export */   "default": function() { return /* binding */ Wikiloc; }
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 
 
 
-class WikilocIframe extends (react__WEBPACK_IMPORTED_MODULE_1___default().Component) {
-  render() {
-    const url = "https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=" + this.props.url;
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
-      frameBorder: "0",
-      scrolling: "no",
-      src: url,
-      width: "500",
-      height: "400"
-    });
-  }
-
+function Wikiloc(props) {
+  const mapUrlVar = typeof props.mapUrl === 'string' ? props.mapUrl.substring(props.mapUrl.length - 8) : '';
+  const id = "https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=" + mapUrlVar;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
+    frameBorder: "0",
+    scrolling: "no",
+    src: id,
+    width: "500",
+    height: "400"
+  });
 }
 
 /***/ }),
@@ -214,7 +214,15 @@ function save(_ref) {
   let {
     attributes
   } = _ref;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save(), attributes.url);
+  const mapUrlVar = typeof attributes.mapUrl === 'string' ? attributes.mapUrl.substring(attributes.mapUrl.length - 8) : '';
+  const id = "https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=" + mapUrlVar;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
+    frameBorder: "0",
+    scrolling: "no",
+    src: id,
+    width: "500",
+    height: "400"
+  });
 }
 
 /***/ }),
@@ -240,16 +248,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
-
-/***/ }),
-
-/***/ "react":
-/*!************************!*\
-  !*** external "React" ***!
-  \************************/
-/***/ (function(module) {
-
-module.exports = window["React"];
 
 /***/ }),
 
