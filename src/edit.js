@@ -45,12 +45,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				value={ attributes.mapUrl.trim() }
 				onChange={ ( val ) => setAttributes( { mapUrl: val } ) }
 			/>
-			<WikilocIframe mapUrl={ attributes.mapUrl } />
+			<WikilocIframe mapUrl={ attributes.mapUrl.trim() } />
 		</div>
 	);
-
-	function myOnChange() {
-		// make the logic
-		// setAttributes
-	}
 }

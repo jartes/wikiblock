@@ -12,7 +12,8 @@
 	},
 	"attributes": {
 		"mapUrl": {
-			"type": "string"			
+			"type": "string",
+			"default": ""
 		}
 	},
 	"textdomain": "wikiblock",

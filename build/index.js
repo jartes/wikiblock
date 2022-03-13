@@ -74,12 +74,8 @@ function Edit(_ref) {
       mapUrl: val
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_iframe_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    mapUrl: attributes.mapUrl
+    mapUrl: attributes.mapUrl.trim()
   }));
-
-  function myOnChange() {// make the logic
-    // setAttributes
-  }
 }
 
 /***/ }),
@@ -102,15 +98,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Wikiloc(props) {
-  const mapUrlVar = typeof props.mapUrl === 'string' ? props.mapUrl.substring(props.mapUrl.length - 8) : '';
-  const id = "https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=" + mapUrlVar;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
-    frameBorder: "0",
-    scrolling: "no",
-    src: id,
-    width: "500",
-    height: "400"
-  });
+  const result = props.mapUrl.match(/\d+$/);
+
+  if (result !== null) {
+    var id = "https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=" + result[0];
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
+      frameBorder: "0",
+      scrolling: "no",
+      src: id,
+      width: "500",
+      height: "400"
+    });
+  }
+
+  return "";
 }
 
 /***/ }),
@@ -184,6 +185,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _iframe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./iframe */ "./src/iframe.js");
 
 
 /**
@@ -200,6 +202,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
 /**
  * The save function defines the way in which the different attributes should
  * be combined into the final markup, which is then serialized by the block
@@ -214,15 +217,9 @@ function save(_ref) {
   let {
     attributes
   } = _ref;
-  const mapUrlVar = typeof attributes.mapUrl === 'string' ? attributes.mapUrl.substring(attributes.mapUrl.length - 8) : '';
-  const id = "https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=" + mapUrlVar;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
-    frameBorder: "0",
-    scrolling: "no",
-    src: id,
-    width: "500",
-    height: "400"
-  });
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_iframe__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    mapUrl: attributes.mapUrl.trim()
+  }));
 }
 
 /***/ }),
