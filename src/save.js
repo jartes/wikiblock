@@ -13,6 +13,8 @@ import { __ } from '@wordpress/i18n';
  */
 import { useBlockProps } from '@wordpress/block-editor';
 
+import WikilocIframe from './iframe';
+
 /**
  * The save function defines the way in which the different attributes should
  * be combined into the final markup, which is then serialized by the block
@@ -23,5 +25,6 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 export default function save( { attributes } ) {
-	return <div { ...useBlockProps.save() }>{ attributes.url }</div>;
+
+	return <div { ...useBlockProps.save() }><WikilocIframe mapUrl={ attributes.mapUrl.trim() } /></div>;
 }

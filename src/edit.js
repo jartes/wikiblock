@@ -27,6 +27,8 @@ import './editor.scss';
  */
 import { TextControl } from '@wordpress/components';
 
+import WikilocIframe from './iframe.js';
+
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
@@ -39,10 +41,11 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<div { ...useBlockProps() }>
 			<TextControl
-				label={ __( 'Add the Wikiloc track to display on your site', 'wikiblock' ) }
-				value={ attributes.url }
-                onChange={ ( val ) => setAttributes( { url: val } ) }
+				label={ __( 'Add the Wikiloc track URL to display on your site.', 'wikiblock' ) }
+				value={ attributes.mapUrl.trim() }
+				onChange={ ( val ) => setAttributes( { mapUrl: val } ) }
 			/>
+			<WikilocIframe mapUrl={ attributes.mapUrl.trim() } />
 		</div>
 	);
 }

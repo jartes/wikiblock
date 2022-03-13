@@ -11,10 +11,8 @@
 		"html": false
 	},
 	"attributes": {
-		"url": {
+		"mapUrl": {
 			"type": "string",
-			"source": "text",
-			"selector": "div",
 			"default": ""
 		}
 	},
