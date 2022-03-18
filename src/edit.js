@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -25,7 +25,7 @@ import './editor.scss';
  * TextControl Component
  * 
  */
-import { TextControl } from '@wordpress/components';
+import { CheckboxControl, PanelBody, SelectControl, TextControl } from '@wordpress/components';
 
 import WikilocIframe from './iframe.js';
 
@@ -40,12 +40,40 @@ import WikilocIframe from './iframe.js';
 export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<div { ...useBlockProps() }>
+			<InspectorControls>
+				<PanelBody title={ __( 'Map settings', 'wikiblock' ) }>
+					
+					<TextControl label={ __( 'Map width', 'wikiblock' ) } onChange={ ( val ) => setAttributes( { mapWidth: parseInt(val) } ) } value={ attributes.mapWidth } type="number" />
+
+					<TextControl label={ __( 'Map height', 'wikiblock' ) } onChange={ ( val ) => setAttributes( { mapHeight: parseInt(val) } ) } value={ attributes.mapHeight } type="number" />
+
+					<SelectControl 
+						label={ __( 'Map Type', 'wikiblock' ) } 
+						onChange={ ( val ) => setAttributes( { mapType: val } ) } 
+						value={ attributes.mapType }
+						options={ [
+							{ value: 'H', label: __( 'Satellite', 'wikiblock' ) },
+							{ value: 'M', label: __( 'Map', 'wikiblock' ) },
+							{ value: 'T', label: __( 'Terrain', 'wikiblock' ) },
+						] }
+					/>
+
+					<CheckboxControl label={ __( 'Show title?', 'wikiblock' ) } checked={ attributes.showTitle } onChange={ ( val ) => setAttributes( { showTitle: val } ) } />
+
+					<CheckboxControl label={ __( 'Show measurements and elevation?', 'wikiblock' ) } checked={ attributes.showMeasuresElevation } onChange={ ( val ) => setAttributes( { showMeasuresElevation: val } ) } />
+
+					<CheckboxControl label={ __( 'Show location?', 'wikiblock' ) } checked={ attributes.showLocation } onChange={ ( val ) => setAttributes( { showLocation: val } ) } />
+
+					<CheckboxControl label={ __( 'Show images?', 'wikiblock' ) } checked={ attributes.showImages } onChange={ ( val ) => setAttributes( { showImages: val } ) } />
+					
+				</PanelBody>
+			</InspectorControls>
 			<TextControl
 				label={ __( 'Add the Wikiloc track URL to display on your site.', 'wikiblock' ) }
 				value={ attributes.mapUrl.trim() }
 				onChange={ ( val ) => setAttributes( { mapUrl: val } ) }
 			/>
-			<WikilocIframe mapUrl={ attributes.mapUrl.trim() } />
+			<WikilocIframe mapUrl={ attributes.mapUrl.trim() } mapType={ attributes.mapType } />
 		</div>
 	);
 }
