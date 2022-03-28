@@ -1,15 +1,26 @@
 import { render } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 
-export default function Wikiloc( props ) {
+export default function Wikiloc( attributes ) {
 
-    const result = props.mapUrl.match(/\d+$/);
+    const { 
+        mapUrl,
+        mapWidth,
+        mapHeight,
+        mapType,
+        showTitle,
+        showMeasuresElevation,
+        showLocation,
+        showImages
+    } = attributes.attributes;
 
-    if ( result !== null ) {
-        var id = "https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=" + result[0] + "&maptype=" + props.mapType;
+    const trailId = mapUrl.match(/\d+$/);
+
+    if ( trailId !== null ) {
+        var iframeSrc = "https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=" + trailId[0] + "&maptype=" + mapType + "&title=" + ( showTitle === true ? 'on' : 'off' ) + "&measures=" + ( showMeasuresElevation === true ? 'on' : 'off' ) + "&neat=" + ( showLocation === true ? 'on' : 'off' ) + "&images=" + ( showImages === true ? 'on' : 'off' );
 
         return (
-            <iframe frameBorder="0" scrolling="no" src={id} width="500" height="400" ></iframe>
+            <iframe frameBorder="0" scrolling="no" src={ iframeSrc } width={ mapWidth } height={ mapHeight } ></iframe>
         );
     }
 

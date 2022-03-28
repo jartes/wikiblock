@@ -130,8 +130,7 @@ function Edit(_ref) {
       mapUrl: val
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_iframe_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    mapUrl: attributes.mapUrl.trim(),
-    mapType: attributes.mapType
+    attributes: attributes
   }));
 }
 
@@ -154,17 +153,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Wikiloc(props) {
-  const result = props.mapUrl.match(/\d+$/);
+function Wikiloc(attributes) {
+  const {
+    mapUrl,
+    mapWidth,
+    mapHeight,
+    mapType,
+    showTitle,
+    showMeasuresElevation,
+    showLocation,
+    showImages
+  } = attributes.attributes;
+  const trailId = mapUrl.match(/\d+$/);
 
-  if (result !== null) {
-    var id = "https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=" + result[0] + "&maptype=" + props.mapType;
+  if (trailId !== null) {
+    var iframeSrc = "https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=" + trailId[0] + "&maptype=" + mapType + "&title=" + (showTitle === true ? 'on' : 'off') + "&measures=" + (showMeasuresElevation === true ? 'on' : 'off') + "&neat=" + (showLocation === true ? 'on' : 'off') + "&images=" + (showImages === true ? 'on' : 'off');
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
       frameBorder: "0",
       scrolling: "no",
-      src: id,
-      width: "500",
-      height: "400"
+      src: iframeSrc,
+      width: mapWidth,
+      height: mapHeight
     });
   }
 
@@ -275,7 +284,7 @@ function save(_ref) {
     attributes
   } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_iframe__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    mapUrl: attributes.mapUrl.trim()
+    attributes: attributes
   }));
 }
 
