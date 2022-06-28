@@ -153,7 +153,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Wikiloc(attributes) {
+function Wikiloc(_ref) {
+  let {
+    attributes
+  } = _ref;
   const {
     mapUrl,
     mapWidth,
@@ -163,7 +166,7 @@ function Wikiloc(attributes) {
     showMeasuresElevation,
     showLocation,
     showImages
-  } = attributes.attributes;
+  } = attributes;
   const trailId = mapUrl.match(/\d+$/);
 
   if (trailId !== null) {

@@ -1,7 +1,7 @@
 import { render } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 
-export default function Wikiloc( attributes ) {
+export default function Wikiloc( { attributes } ) {
 
     const { 
         mapUrl,
@@ -12,7 +12,7 @@ export default function Wikiloc( attributes ) {
         showMeasuresElevation,
         showLocation,
         showImages
-    } = attributes.attributes;
+    } = attributes;
 
     const trailId = mapUrl.match(/\d+$/);
 
