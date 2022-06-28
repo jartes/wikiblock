@@ -67,14 +67,70 @@ function Edit(_ref) {
     attributes,
     setAttributes
   } = _ref;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Map settings', 'wikiblock')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Map width', 'wikiblock'),
+    onChange: val => setAttributes({
+      mapWidth: parseInt(val)
+    }),
+    value: attributes.mapWidth,
+    type: "number"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Map height', 'wikiblock'),
+    onChange: val => setAttributes({
+      mapHeight: parseInt(val)
+    }),
+    value: attributes.mapHeight,
+    type: "number"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Map Type', 'wikiblock'),
+    onChange: val => setAttributes({
+      mapType: val
+    }),
+    value: attributes.mapType,
+    options: [{
+      value: 'H',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Satellite', 'wikiblock')
+    }, {
+      value: 'M',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Map', 'wikiblock')
+    }, {
+      value: 'T',
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Terrain', 'wikiblock')
+    }]
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show title?', 'wikiblock'),
+    checked: attributes.showTitle,
+    onChange: val => setAttributes({
+      showTitle: val
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show measurements and elevation?', 'wikiblock'),
+    checked: attributes.showMeasuresElevation,
+    onChange: val => setAttributes({
+      showMeasuresElevation: val
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show location?', 'wikiblock'),
+    checked: attributes.showLocation,
+    onChange: val => setAttributes({
+      showLocation: val
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show images?', 'wikiblock'),
+    checked: attributes.showImages,
+    onChange: val => setAttributes({
+      showImages: val
+    })
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add the Wikiloc track URL to display on your site.', 'wikiblock'),
     value: attributes.mapUrl.trim(),
     onChange: val => setAttributes({
       mapUrl: val
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_iframe_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    mapUrl: attributes.mapUrl.trim()
+    attributes: attributes
   }));
 }
 
@@ -97,17 +153,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Wikiloc(props) {
-  const result = props.mapUrl.match(/\d+$/);
+function Wikiloc(_ref) {
+  let {
+    attributes
+  } = _ref;
+  const {
+    mapUrl,
+    mapWidth,
+    mapHeight,
+    mapType,
+    showTitle,
+    showMeasuresElevation,
+    showLocation,
+    showImages
+  } = attributes;
+  const trailId = mapUrl.match(/\d+$/);
 
-  if (result !== null) {
-    var id = "https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=" + result[0];
+  if (trailId !== null) {
+    var iframeSrc = "https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=" + trailId[0] + "&maptype=" + mapType + "&title=" + (showTitle === true ? 'on' : 'off') + "&measures=" + (showMeasuresElevation === true ? 'on' : 'off') + "&neat=" + (showLocation === true ? 'on' : 'off') + "&images=" + (showImages === true ? 'on' : 'off');
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("iframe", {
       frameBorder: "0",
       scrolling: "no",
-      src: id,
-      width: "500",
-      height: "400"
+      src: iframeSrc,
+      width: mapWidth,
+      height: mapHeight
     });
   }
 
@@ -218,7 +287,7 @@ function save(_ref) {
     attributes
   } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_iframe__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    mapUrl: attributes.mapUrl.trim()
+    attributes: attributes
   }));
 }
 

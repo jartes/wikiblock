@@ -14,6 +14,34 @@
 		"mapUrl": {
 			"type": "string",
 			"default": ""
+		},
+		"mapType": {
+			"type": "string", 
+			"default": "H"
+		},
+		"mapWidth": {
+			"type": "number",
+			"default": 500
+		},
+		"mapHeight": {
+			"type": "number",
+			"default": 400
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": false
+		},
+		"showMeasuresElevation": {
+			"type": "boolean",
+			"default": false
+		},
+		"showLocation": {
+			"type": "boolean",
+			"default": false
+		},
+		"showImages": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"textdomain": "wikiblock",

@@ -25,6 +25,5 @@ import WikilocIframe from './iframe';
  * @return {WPElement} Element to render.
  */
 export default function save( { attributes } ) {
-
-	return <div { ...useBlockProps.save() }><WikilocIframe mapUrl={ attributes.mapUrl.trim() } /></div>;
+	return <div { ...useBlockProps.save() }><WikilocIframe attributes={ attributes } /></div>;
 }
