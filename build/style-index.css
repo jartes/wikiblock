@@ -8,4 +8,9 @@
   padding: 2px;
 }
 
+.wp-block-jartes-wikiblock iframe {
+  max-width: 100%;
+  width: 100%;
+}
+
 /*# sourceMappingURL=style-index.css.map*/

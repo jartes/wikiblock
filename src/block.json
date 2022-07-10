@@ -8,7 +8,8 @@
 	"icon": "smiley",
 	"description": "Example block written with ESNext standard and JSX support – build step required.",
 	"supports": {
-		"html": false
+		"html": false,
+		"align": true
 	},
 	"attributes": {
 		"mapUrl": {
@@ -18,10 +19,6 @@
 		"mapType": {
 			"type": "string", 
 			"default": "H"
-		},
-		"mapWidth": {
-			"type": "number",
-			"default": 500
 		},
 		"mapHeight": {
 			"type": "number",

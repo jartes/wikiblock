@@ -70,13 +70,6 @@ function Edit(_ref) {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Map settings', 'wikiblock')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Map width', 'wikiblock'),
-    onChange: val => setAttributes({
-      mapWidth: parseInt(val)
-    }),
-    value: attributes.mapWidth,
-    type: "number"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Map height', 'wikiblock'),
     onChange: val => setAttributes({
       mapHeight: parseInt(val)
@@ -159,7 +152,6 @@ function Wikiloc(_ref) {
   } = _ref;
   const {
     mapUrl,
-    mapWidth,
     mapHeight,
     mapType,
     showTitle,
@@ -175,7 +167,6 @@ function Wikiloc(_ref) {
       frameBorder: "0",
       scrolling: "no",
       src: iframeSrc,
-      width: mapWidth,
       height: mapHeight
     });
   }

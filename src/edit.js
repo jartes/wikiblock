@@ -42,8 +42,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		<div { ...useBlockProps() }>
 			<InspectorControls>
 				<PanelBody title={ __( 'Map settings', 'wikiblock' ) }>
-					
-					<TextControl label={ __( 'Map width', 'wikiblock' ) } onChange={ ( val ) => setAttributes( { mapWidth: parseInt(val) } ) } value={ attributes.mapWidth } type="number" />
 
 					<TextControl label={ __( 'Map height', 'wikiblock' ) } onChange={ ( val ) => setAttributes( { mapHeight: parseInt(val) } ) } value={ attributes.mapHeight } type="number" />
 

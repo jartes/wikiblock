@@ -4,6 +4,10 @@
 
 .wp-block-jartes-wikiblock {
 	border: 1px solid #000;
+
+	// Fixes the block alignment on the editor with other blocks when the block is aligned to the left or right.
+	clear: both;
+
 	padding: 16px;
 }
 
