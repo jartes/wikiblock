@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:       Wikiblock
- * Description:       Example block written with ESNext standard and JSX support – build step required.
+ * Description:       An editor block to embed Wikiloc trails.
  * Requires at least: 5.8
  * Requires PHP:      7.0
  * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Author:            jartes
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       wikiblock
