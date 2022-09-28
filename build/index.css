@@ -6,6 +6,7 @@
  */
 .wp-block-jartes-wikiblock {
   border: 1px solid #000;
+  clear: both;
   padding: 16px;
 }
 
